@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var initial_position := Vector2(1024 / 2, 768 / 2)
-var initial_ball_speed := 200
+var initial_ball_speed := 300
 var ball_speed := initial_ball_speed
 var hit_counter := 0
 var speed_bonus_hit_counter := 10
@@ -60,10 +60,12 @@ func reset():
 
 
 func _on_left_goal_body_entered(body: Node) -> void:
+    print("goal left")
     get_parent().score[0] += 1
     reset()
 
 
 func _on_right_goal_body_entered(body: Node) -> void:
+    print("goal right")
     get_parent().score[1] += 1
     reset()
