@@ -1,55 +1,39 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://goal/Goal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ball/ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/score.gd" type="Script" id=5]
 [ext_resource path="res://fonts/LuckiestGuy-Regular.ttf" type="DynamicFontData" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 400, 16 )
-
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 80
 font_data = ExtResource( 6 )
 
-[node name="main" type="Node2D"]
+[node name="Main" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="walls" type="StaticBody2D" parent="."]
-
-[node name="left_wall" type="Area2D" parent="walls"]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/left_wall"]
-position = Vector2( -16, 368 )
-rotation = 1.5708
-shape = SubResource( 1 )
-
-[node name="right_wall" type="Area2D" parent="walls"]
-position = Vector2( 1056, 0 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/right_wall"]
-position = Vector2( -16, 368 )
-rotation = 1.5708
-shape = SubResource( 1 )
-
-[node name="ball" parent="." instance=ExtResource( 4 )]
+[node name="Ball" parent="." instance=ExtResource( 4 )]
 position = Vector2( 512, 384 )
 
-[node name="score" type="Label" parent="."]
+[node name="Score" type="Label" parent="."]
 margin_left = 392.0
 margin_top = 95.0
 margin_right = 632.0
 margin_bottom = 176.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Goals" type="Node" parent="."]
+
+[node name="left_goal" parent="Goals" instance=ExtResource( 2 )]
+
+[node name="right_goal" parent="Goals" instance=ExtResource( 2 )]
+goal_side = 1
+[connection signal="body_entered" from="Goals/left_goal" to="Ball" method="_on_left_goal_body_entered"]
+[connection signal="body_entered" from="Goals/right_goal" to="Ball" method="_on_right_goal_body_entered"]

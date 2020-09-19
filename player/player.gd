@@ -1,14 +1,17 @@
 extends KinematicBody2D
 
-var speed = 200
-var velocity = Vector2(0, 0)
+var speed := 200
+var velocity := Vector2(0, 0)
+
 
 func _ready():
     pass # Replace with function body.
 
-func initialize(pos, color_mod):
+
+func initialize(pos, color_mod) -> void:
     self.position = pos
     $racket_spr.modulate = Color(color_mod)
+
 
 func _process(delta):
     velocity = Vector2(0, 0)
