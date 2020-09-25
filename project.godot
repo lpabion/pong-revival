@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [display]
 
 window/size/height=768
+window/stretch/aspect="keep"
 
 [rendering]
 

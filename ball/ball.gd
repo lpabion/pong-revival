@@ -5,7 +5,7 @@ var initial_position := Vector2.ZERO
 var initial_ball_speed := 300
 var ball_speed := initial_ball_speed
 var hit_counter := 0
-var speed_bonus_hit_counter := 10
+var speed_bonus_hit_counter := 20
 var starting_velocity := Vector2()
 var ball_velocity := Vector2()
 
@@ -41,7 +41,7 @@ func _physics_process(delta):
     if collision:
         ball_velocity = ball_velocity.bounce(collision.normal)
         if collision.collider.is_in_group("rackets"):
-            var y := ball_velocity.y / 3 +  collision.collider_velocity.y
+            var y := ball_velocity.y / 2 +  collision.collider_velocity.y / 2
             hit_counter += 1
             ball_velocity = Vector2(ball_velocity.x, y).normalized() * (ball_speed + hit_counter * speed_bonus_hit_counter)
 
