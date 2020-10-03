@@ -1,7 +1,7 @@
 extends Node2D
 
 var particles := []
-var particles_number := 50
+var particles_number := 100
 
 
 func _ready() -> void:
@@ -30,7 +30,8 @@ func initialize_particles() -> Array:
 func update_particles(delta: float) -> void:
     for i in range(particles.size()):
         particles[i][0] += particles[i][1] * delta
-        particles[i][3] = Color(255.0, 0.0, 0.0, particles[i][3][3] * 0.9)
+        #particles[i][3] = Color(255.0, 0.0, 0.0, particles[i][3][3] * 0.9)
+        particles[i][3][3] = particles[i][3][3] * 0.9
         particles[i][4] -= delta * 50
         if particles[i][4] < 0:
             particles[i] = new_particle()
@@ -40,13 +41,13 @@ func new_particle() -> Array:
     var parameters := []
     var size := 3
     var lifetime := rand_range(10.0, 200.0)
-    var rand_dir_x := rand_range(0.8, 1.0)
-    var rand_dir_y := rand_range(0.8, 1.0)
+    var rand_dir_x := rand_range(0.7, 1.0)
+    var rand_dir_y := rand_range(0.7, 1.0)
     var position : Vector2 = get_parent().get_node("Ball").position
     var velocity : Vector2 = get_parent().get_node("Ball").ball_velocity * 0.8
     velocity.x *= rand_dir_x
     velocity.y *= rand_dir_y
-    var color := Color(255.0, 0.0, 0.0, 1)
+    var color := Color(255.0, 255.0, 50.0, 1)
 
     parameters.append(position)
     parameters.append(velocity)
