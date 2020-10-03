@@ -35,7 +35,7 @@ func get_initial_ball_velocity() -> Vector2:
 
 
 func _physics_process(delta):
-    $ball_stats.text = str(ball_velocity)
+    $Ball_stats.text = "vel: " + str(ball_velocity) + "\n pos: " + str(position)
     var collision := move_and_collide(ball_velocity * delta)
 
     if collision:

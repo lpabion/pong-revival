@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://goal/Goal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://particles/Particles.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ball/ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/score.gd" type="Script" id=5]
 [ext_resource path="res://fonts/LuckiestGuy-Regular.ttf" type="DynamicFontData" id=6]
@@ -35,5 +36,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Particles" parent="." instance=ExtResource( 3 )]
 [connection signal="body_entered" from="Goals/left_goal" to="Ball" method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="Goals/right_goal" to="Ball" method="_on_right_goal_body_entered"]

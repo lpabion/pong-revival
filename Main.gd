@@ -28,7 +28,7 @@ func spawn_walls():
     var bottom_wall_poly := CollisionPolygon2D.new()
     bottom_wall_poly.polygon = PoolVector2Array([Vector2(0, _screen_size.y), Vector2(_screen_size.x, _screen_size.y), Vector2(_screen_size.x, 768), Vector2(0, _screen_size.y)])
     bottom_wall.add_child(bottom_wall_poly)
-    bottom_wall.name = "borrom_wall"
+    bottom_wall.name = "bottom_wall"
     self.add_child(bottom_wall)
 
 
